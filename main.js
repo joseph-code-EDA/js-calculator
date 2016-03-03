@@ -9,12 +9,10 @@ var display = { //the main display screen.. better define some useful functions 
 }
 
 var history = { //the history screen.. again some functions would be good
-	set: function(text) { document.getElementById("history").innerHTML = text; },
 	back: function() { document.getElementById("history").innerHTML = document.getElementById("history").innerHTML.slice(0,-3); }
 }
-
 history.append = function(text) { document.getElementById("history").innerHTML += text; }
-
+history.set = function(text) { document.getElementById("history").innerHTML = text; }
 
 function start () { //when we load our calculator, we should probably set the screen to 0... or maybe 58008?
 	display.set('0');
@@ -34,45 +32,68 @@ function numberPress (input) {
 	history.append(input);
 }
 
-function operatorPress (input) {
-	console.log(currentOperator);
-	if (userInNumber) {
-		enter();
-		if (operandStack.length === 1) {
-			if (input != "=") currentOperator = input;
-		} else {
-			switch (currentOperator) {
-			case "+": performOperation(function(a,b) { return a + b }); break;
-			case "-": performOperation(function(a,b) { return b - a }); break;
-			case "*": performOperation(function(a,b) { return a * b }); break;
-			case "/": performOperation(function(a,b) { return b / a }); break;
-			case "=": return; break;
-			default:
-			}
-			if (input != "=") currentOperator = input;
-		}
-		if (input != "=") history.append(" " + input + " ");
-	}
+function percent(){
+	
+	operatorPress("/");
+	numberPress(100);
+	operatorPress("=", true);
 }
 
-function clear() {
+function operatorPress (input, isEquals) {
+	//if the user is still typing in a number, we need to complete it and put that number on the stack
+	//if the user is not typing a number, we need to get what's on the display and use that to perform an operation
+	//
+	if (input === "plusMinus") {
+		if (display.get().slice(0,1) === "-")
+			display.set(display.get().slice(1));
+		else
+			display.set("-".concat(display.get()));
+		return;
+	}
+	//console.log(currentOperator, isEquals);
+	if (userInNumber) {
+		enter();
+	}
+
+
+	if (operandStack.length === 1) {
+		if (input != "=") currentOperator = input;
+	} else {
+		switch (currentOperator) {
+		case "+": performOperation(function(a,b) { return a + b }); break;
+		case "-": performOperation(function(a,b) { return b - a }); break;
+		case "*": performOperation(function(a,b) { return a * b }); break;
+		case "/": performOperation(function(a,b) { return b / a }); break;
+		case "%": performOperation(function(a,b) { return b / a }	); break;
+		case "=": return; break;
+		default:
+		}
+		if (input != "=") currentOperator = input;
+	}
+	console.log(typeof isEquals); 
+	if (typeof isEquals === "undefined")
+		history.append(" " + input + " ");
+	
+}
+
+function clearButton(input) {
 	console.log("clear");
 	operandStack = [];
-	display.set("");
+	display.set("0");
 	history.set("");
 }
 
-function operate() {
-
-}
-
 function performOperation(expression) {
+	console.log("performing");
 	display.set(expression(operandStack.pop(), operandStack.pop()));
 	enter();
 
 }
 
-function enter() {
+function enter(input) {
+	if (input === "=" && userInNumber) {
+		operatorPress(currentOperator, true);
+	}
 	userInNumber = false;
 	operandStack.push(parseFloat(display.get()));
 	console.log(operandStack);
