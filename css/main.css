@@ -2,7 +2,7 @@
 body {
 	background-image: url("../images/wood.jpg");
 	background-color: black;
-	padding: 20px 0px;
+	padding: 10px 0px;
 }
 
 /* Added Fonts */
@@ -20,7 +20,7 @@ body {
 	font-family: "digital-7";
 	text-align: right;
 	font-size: 5em;
-	max-width: 500px;
+	max-width: 315px;
 	height: 90px;
 	background-color: white;
 	border-top-left-radius: 20px;
@@ -31,7 +31,7 @@ body {
 	font-family: "digital-7";
 	text-align: right;
 	font-size: 1.4em;
-	max-width: 500px;
+	max-width: 315px;
 	height: 30px;
 	background-color: white;
 	border-bottom-left-radius: 20px;
@@ -40,7 +40,7 @@ body {
 }
 .displayBorder {
 	 border: 10px solid rgba(0,0,0,0.15);
-	 max-width: 50%;
+	 max-width: 315px;
 	 border-radius: 30px;
 	 margin-bottom: 20px;	
 	 box-shadow:
@@ -53,20 +53,20 @@ body {
 .name {
 	font-family: "negativeSpace";
 	text-align: left;
-	width: 100%;
+	width: 200px;
 	color: #C27457;
 	opacity: 0.9;
-	font-size: 5em;
+	font-size: 2.2em;
 }
 
 /* Buttons */
 button {
   display: inline-block;
-  margin: 10px;
+  margin: 5px;
   padding: 8px 15px;
-  font-size: 2em;
-  height: 100px;
-  width: 100px;
+  font-size: 1.5em;
+  height: 70px;
+  width: 70px;
   color: #C27457;
   background-image: url("../images/wood.jpg");
   border: 10px solid rgba(0,0,0,0.15);/* controls opacity of button border */
@@ -90,9 +90,9 @@ button {
 .name {
 	font-family: "negativeSpace";
 	text-align: left;
-	width: 100%;
+	width: 200px;
 	color: white;
 	opacity: 0.2;
-	font-size: 3em;
+	font-size: 2em;
 	padding-bottom: 0px;
 }
