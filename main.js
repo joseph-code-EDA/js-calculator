@@ -9,10 +9,12 @@ var display = { //the main display screen.. better define some useful functions 
 }
 
 var history = { //the history screen.. again some functions would be good
-	set: function(text) { document.getElementById("history").innerHTML = text; }
+	set: function(text) { document.getElementById("history").innerHTML = text; },
+	back: function() { document.getElementById("history").innerHTML = document.getElementById("history").innerHTML.slice(0,-3); }
 }
 
 history.append = function(text) { document.getElementById("history").innerHTML += text; }
+
 
 function start () { //when we load our calculator, we should probably set the screen to 0... or maybe 58008?
 	display.set('0');
@@ -33,10 +35,11 @@ function numberPress (input) {
 }
 
 function operatorPress (input) {
+	console.log(currentOperator);
 	if (userInNumber) {
 		enter();
 		if (operandStack.length === 1) {
-			currentOperator = input;
+			if (input != "=") currentOperator = input;
 		} else {
 			switch (currentOperator) {
 			case "+": performOperation(function(a,b) { return a + b }); break;
@@ -46,9 +49,9 @@ function operatorPress (input) {
 			case "=": return; break;
 			default:
 			}
-			currentOperator = input;
+			if (input != "=") currentOperator = input;
 		}
-		history.append(" " + input + " ");
+		if (input != "=") history.append(" " + input + " ");
 	}
 }
 
