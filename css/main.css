@@ -23,16 +23,27 @@ inset 0 1px 1px rgba(255,255,255,1); /*top internal highlight*/
 	text-align: right;
 	font-size: 3em;
 }
-
 .display {
 	font-family: "digital-7";
 	text-align: right;
-	font-size: 7em;
+	font-size: 4em;
 	background-color: white;
 	border-radius: 20px;
 	padding: 10px;
 	margin-bottom: 20px;
 }
+.history {
+	font-family: "digital-7";
+	text-align: right;
+	font-size: 4em;
+	background-color: white;
+	border-bottom-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+
 
 /*.r1, .r2, .r3, .r4, .r5 {
 	font-family: "negativeSpace";
