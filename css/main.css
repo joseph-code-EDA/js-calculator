@@ -1,0 +1,58 @@
+body {
+	background-image: url("../images/wood.jpg");
+	background-color: black;
+	padding-top: 20px;
+}
+
+@font-face {
+	src: url(./fonts/digital-7.ttf);
+	font-family: "digital-7";
+}
+@font-face {
+	src: url(./fonts/NegativeSpace.ttf);
+	font-family: "negativeSpace";
+}
+
+.buttons {
+box-shadow: inset 0 -1px 1px rgba(0,0,0,0.5), /*bottom internal shadow*/
+inset 0 1px 1px rgba(255,255,255,1); /*top internal highlight*/
+}
+
+.name {
+	font-family: "negativeSpace";
+	text-align: right;
+	font-size: 3em;
+}
+
+.display {
+	font-family: "digital-7";
+	text-align: right;
+	font-size: 7em;
+	background-color: white;
+	border-radius: 20px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+/*.r1, .r2, .r3, .r4, .r5 {
+	font-family: "negativeSpace";
+  	color: #14396A !important;
+  	font-size: 26px;
+  	text-shadow: 1px 2px 0px white;
+  	box-shadow: 1px 1px 1px #BEE2F9;
+  	padding: 19px 15px;
+  	-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+  	border-radius: 10px;
+  	border: 2px solid #3866A3;
+  	background: #63B8EE;
+}
+
+.r1, .r2, .r3, .r4, .r5:hover {
+  	color: #6A0A0A !important;
+ 	 background: #468CCF;
+  	background: linear-gradient(top,  #468CCF,  #63B8EE);
+  	background: -ms-linear-gradient(top,  #468CCF,  #63B8EE);
+  	background: -webkit-gradient(linear, left top, left bottom, from(#468CCF), to(#63B8EE));
+  	background: -moz-linear-gradient(top,  #468CCF,  #63B8EE);
+}
