@@ -1,4 +1,5 @@
 var userInNumber = false;
+var currentOperator = "";
 
 var display = new Object();
 display.get = function() {
@@ -34,7 +35,6 @@ function numberPress (input) {
 		display.set(input);
 		userInNumber = true;
 	}
-
 	history.append(input);
 
 }
@@ -44,24 +44,33 @@ function operatorPress (input) {
 		enter();
 	}
 
-	switch (input) {
-		case "+": performOperation(function(a, b) { a * b });
+	if (operandStack.length === 1) {
+		currentOperator = input;
+	} else {
+		switch (currentOperator) {
+		case "+": performOperation(function(a,b) { return a + b });
 		break;
-
+		case "-": performOperation(function(a,b) { return b - a });
+		break;
+		case "*": performOperation(function(a,b) { return a * b });
+		break;
+		case "/": performOperation(function(a,b) { return b / a });
+		break;
+		default:
+		}
+		currentOperator = input;
 	}
-
 	history.append(" " + input + " ");
 }
 
-function performOperation(operation) {
-	if (operandStack.length >= 2) {
-		display.set(operation(operandStack.pop(), operandStack.pop()));
-
-	}
+function performOperation(expression) {
+	display.set(expression(operandStack.pop(), operandStack.pop()));
+	enter();
 
 }
 
 function enter() {
 	userInNumber = false;
-	display.set(perandStack.pop());
+	operandStack.push(parseFloat(display.get()));
+	console.log(operandStack);
 }
