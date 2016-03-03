@@ -8,11 +8,22 @@ display.set = function(text) {
 	document.getElementById("display").innerHTML = text;
 }
 
+var history = new Object();
+history.set = function(text) {
+	document.getElementById("history").innerHTML = text;
+}
+history.append = function(text) {
+	document.getElementById("history").innerHTML += text;
+}
+
+var operandStack = [];
+
+
 function start () {
 	display.set('0');
 }
 
-function buttonPress (input) {
+function numberPress (input) {
 
 	if (input === "." && display.get().indexOf(".") != -1 ) {
 		return;
@@ -24,47 +35,33 @@ function buttonPress (input) {
 		userInNumber = true;
 	}
 
-	
- 	/*
-	if (numbersArray.indexOf(input) > -1) { 
-		if (getDisplay() === "0") { setDisplay("") }; //remove zero if it's the first number pressed
-		setDisplay(getDisplay() + input);
-	} else if (operatorsArray.indexOf(input) > -1) {
-		//prevent add to display if it's the first button pressed
-		//prevent add to display if the character before it was another operator
+	history.append(input);
 
-	} else if (input === ".") {
-		//add zero if it's the first button pressed (actually it's already implemented like this)
-		//add zero if it's the first button pressed after an operator
-		//prevent if the current number is also a decimal
+}
 
-	} else if (input === "0") {
-		//prevent if current number is already zero
-		
+function operatorPress (input) {
+	if (userInNumber) {
+		enter();
+	}
 
-	} else if (input === "%") {
-
-	} else if (input === "+/-") {
-
-	} else if (input === "AC") {
-
-	} else if (input === "=") {
+	switch (input) {
+		case "+": performOperation(function(a, b) { a * b });
+		break;
 
 	}
-	*/
+
+	history.append(" " + input + " ");
 }
 
-/*
-function getCurrentNumber() {
+function performOperation(operation) {
+	if (operandStack.length >= 2) {
+		display.set(operation(operandStack.pop(), operandStack.pop()));
+
+	}
 
 }
 
-function isOperator(input) {
-	return ["+", "-", "*", "/", "=",].indexOf(input) > -1;
+function enter() {
+	userInNumber = false;
+	display.set(perandStack.pop());
 }
-
-function isOperand(input) {
-	return ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].indexOf(input) > -1;
-}
-*/
-
