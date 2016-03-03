@@ -19,6 +19,9 @@ function start () { //when we load our calculator, we should probably set the sc
 }
 
 function numberPress (input) {
+	if (input.length > 10) {
+		input = input.substring(0,10)
+	}
 	if (input === "." && display.get().indexOf(".") != -1 ) {
 		return;
 	}
