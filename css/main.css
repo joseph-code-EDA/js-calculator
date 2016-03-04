@@ -7,11 +7,11 @@ body {
 
 /* Added Fonts */
 @font-face {
-	src: url(./fonts/digital-7.ttf);
+	src: url(/fonts/digital-7.ttf);
 	font-family: "digital-7";
 }
 @font-face {
-	src: url(./fonts/NegativeSpace.ttf);
+	src: url(/fonts/NegativeSpace.ttf);
 	font-family: "negativeSpace";
 }
 
