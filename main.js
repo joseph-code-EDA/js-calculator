@@ -4,8 +4,12 @@ var operandStack = []; //might be good to have a stack to hold our integers
 
 var display = { //the main display screen.. better define some useful functions for it
 	get: function() { return document.getElementById("display").innerHTML; },
-	set: function(text) { document.getElementById("display").innerHTML = text; },
 	append: function(text) { document.getElementById("display").innerHTML += text; }
+}
+
+display.set = function(text) { 
+	//text = text.toString().substring(0,8);
+	document.getElementById("display").innerHTML = text; 
 }
 
 var history = { //the history screen.. again some functions would be good
@@ -19,9 +23,6 @@ function start () { //when we load our calculator, we should probably set the sc
 }
 
 function numberPress (input) {
-	if (input.length > 10) {
-		input = input.substring(0,10)
-	}
 	if (input === "." && display.get().indexOf(".") != -1 ) {
 		return;
 	}
